@@ -5,14 +5,15 @@
   "manifest_version": 3,
   "author": "CharlyAnne",
   "icons": {
-    "logo": "/src/assets/logo.png"
+    "logo": "../public/logo.png"
   },
   "action": {
-    "default_popup": "Popup.jsx"
+    "default_popup": "./popup.html"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "./background.js"
   },
+
   "content_scripts": [
     {
       "matches": [],
