@@ -6,12 +6,14 @@
   "author": "CharlyAnne",
   "icons": {
     "128": "/icon-128.png",
-    "16": "/copy.png",
-    "16": "/settings.png",
-    "16": "/monitor.png",
-    "16": "/video.png",
-    "16": "/microphone.png",
-    "16": "/close-circle.png"
+    "16": [
+      "/copy.png",
+      "/settings.png",
+      "/monitor.png",
+      "/video.png",
+      "/microphone.png",
+      "/close-circle.png"
+    ]
   },
   "action": {
     "default_popup": "./popup.html",
@@ -29,5 +31,12 @@
     }
   ],
   "host_permissions": ["https://*/", "http://*/"],
-  "permissions": ["tabs", "activeTab", "desktopCapture"]
+  "permissions": [
+    "accessibilityFeatures.read",
+    "accessibilityFeatures.modify",
+    "tabs",
+    "activeTab",
+    "scripting",
+    "desktopCapture"
+  ]
 }
