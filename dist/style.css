@@ -1,0 +1,138 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.img-1 img {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.img-2 img {
+  width: 1.7rem;
+
+  height: 1.7rem;
+}
+.logo-img {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: auto;
+}
+h2 {
+  color: #120b48;
+  font-size: 1.5rem;
+  margin: auto;
+}
+.container {
+  padding: 1.5rem;
+  width: 19rem;
+  background-color: #eee;
+  border-radius: 15px;
+}
+.navv {
+  justify-content: space-between;
+  padding: 0rem 0 0.5rem 0;
+}
+.flex {
+  display: flex;
+}
+.space-around {
+  margin-right: 0.5rem;
+}
+.subtitle {
+  width: 90%;
+}
+.text {
+  padding: 0.5rem 0;
+  color: #413c6d;
+  text-align: left;
+  font-size: 1rem;
+}
+.icons {
+  padding-top: 1rem;
+}
+.icon-flex {
+  display: flex;
+  justify-content: space-around;
+}
+.img-2 {
+  margin: auto;
+  text-align: center;
+  align-self: center;
+}
+.caption {
+  text-align: left;
+  font-size: 1rem;
+  padding-top: 0.5rem;
+  font-weight: 600;
+}
+.light {
+  color: #928fab;
+}
+.bold {
+  color: #120b48;
+}
+.camera-audio {
+}
+.camera {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #120b48;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+.img-3 {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin: auto;
+}
+.cam {
+  margin-right: 0.5rem;
+}
+.cam-text {
+  padding-left: 0.2rem;
+  margin: auto;
+  color: #120b48;
+}
+
+/************
+  Toggle ******/
+.toggle-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+/* Hide the default checkbox input */
+.toggle-container input[type='checkbox'] {
+  display: none;
+}
+
+/* Style the toggle slider */
+.toggle-slider {
+  width: 30px;
+  height: 15px;
+  background-color: #ccc;
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+/* Style the toggle slider when checked */
+.toggle-container input[type='checkbox']:checked + .toggle-slider {
+  background-color: blue;
+}
+.button {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #0f172a;
+  color: white;
+  width: 100%;
+}
+button:hover {
+  box-shadow: 1px 0px 10p #eee;
+}

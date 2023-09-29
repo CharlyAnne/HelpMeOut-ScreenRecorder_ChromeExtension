@@ -1,1 +1,69 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><title>HelpMeOut</title><script defer="defer" src="popup.js"></script></head><body><div id="app-container"></div></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Help Me Out</title>
+    <!-- <link
+      rel="stylesheet"
+      href="path/to/font-awesome/css/font-awesome.min.css"
+    /> -->
+    <link href="./style.css" type="text/css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/22267974e5.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer="defer" src="popup.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navv flex">
+        <div class="logo flex">
+          <img src="./logo.png" class="logo-img space-around" alt="logo" />
+          <h2 class="logotext">HelpMeOut</h2>
+        </div>
+        <div class="settings img-1 flex">
+          <img src="/setting-2.png" class="space-around" alt="settings" />
+          <img src="./close-circle.png" alt="close" />
+        </div>
+      </div>
+      <div class="subtitle">
+        <p class="text">
+          This extension helps you record and share help videos with ease.
+        </p>
+      </div>
+      <div class="icons">
+        <div class="icon-flex img-2">
+          <img src="./monitor.png" alt="full screen" />
+          <img src="./copy.png" alt="current tab" />
+        </div>
+        <div class="icon-flex">
+          <p class="caption light">Full screen</p>
+          <p class="caption bold">Current tab</p>
+        </div>
+      </div>
+      <div class="camera-audio">
+        <div class="camera">
+          <div class="flex">
+            <img src="./video.png" class="cam img-3" alt="camera" />
+            <p class="cam-text">Camera</p>
+          </div>
+          <div class="toggle-container">
+            <input type="checkbox" id="cameraToggle" />
+            <span class="toggle-slider"></span>
+          </div>
+        </div>
+        <div class="camera">
+          <div class="flex">
+            <img src="./microphone.png" class="cam img-3" alt="mic" />
+            <p class="cam-text">Audio</p>
+          </div>
+          <div class="toggle-container">
+            <input type="checkbox" id="micToggle" />
+            <span class="toggle-slider"></span>
+          </div>
+        </div>
+      </div>
+      <button class="record" value="Start Recoding"></button>
+    </div>
+  </body>
+</html>

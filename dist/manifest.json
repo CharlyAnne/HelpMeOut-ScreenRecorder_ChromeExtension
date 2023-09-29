@@ -1,0 +1,33 @@
+{
+  "name": "Help Me Out",
+  "version": "1.0.0",
+  "description": "Screen Recorder",
+  "manifest_version": 3,
+  "author": "CharlyAnne",
+  "icons": {
+    "128": "/icon-128.png",
+    "16": "/copy.png",
+    "16": "/settings.png",
+    "16": "/monitor.png",
+    "16": "/video.png",
+    "16": "/microphone.png",
+    "16": "/close-circle.png"
+  },
+  "action": {
+    "default_popup": "./popup.html",
+    "default_icon": {
+      "16": "/logo.png"
+    }
+  },
+  "background": {
+    "service_worker": "./background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "host_permissions": ["https://*/", "http://*/"],
+  "permissions": ["tabs", "activeTab", "desktopCapture"]
+}
