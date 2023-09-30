@@ -6,14 +6,12 @@
   "author": "CharlyAnne",
   "icons": {
     "128": "/icon-128.png",
-    "16": [
-      "/copy.png",
-      "/settings.png",
-      "/monitor.png",
-      "/video.png",
-      "/microphone.png",
-      "/close-circle.png"
-    ]
+    "15": "/copy.png",
+    "16": "/setting-2.png",
+    "17": "/monitor.png",
+    "18": "/video.png",
+    "13": "/microphone.png",
+    "12": "/close-circle.png"
   },
   "action": {
     "default_popup": "./popup.html",
