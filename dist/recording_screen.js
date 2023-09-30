@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const fetchBlob = async (url) => {
   const response = await fetch(url);
   const blob = await response.blob();

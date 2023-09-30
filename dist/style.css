@@ -2,7 +2,6 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .img-1 img {
@@ -27,8 +26,7 @@ h2 {
 .container {
   padding: 1.5rem;
   width: 19rem;
-  background-color: #eee;
-  border-radius: 15px;
+  background-color: #fff;
 }
 .navv {
   justify-content: space-between;

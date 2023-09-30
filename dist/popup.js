@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Camera and mic toggle buttons
 const cameraToggle = document.getElementById('cameraToggle');
 const micToggle = document.getElementById('micToggle');

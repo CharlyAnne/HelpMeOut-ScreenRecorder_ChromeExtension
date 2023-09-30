@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const startRecording = async () => {
   await chrome.tabs.query(
     { active: true, lastFocusedWindow: true, currentWindow: true },

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Wait for the endedRecording message from recording_screen.js
 chrome.runtime.onMessage.addListener((request) => {
   if (request.name !== 'endedRecording') {
