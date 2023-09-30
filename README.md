@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# HelpMeOut - Google Chrome Video Recorder Extension
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository provides a minimal example of how to create a Chrome extension that records the user's screen and webcam, allowing navigation or URL changes on the current tab.
 
-## Available Scripts
+## What is being solved
 
-In the project directory, you can run:
+- Screen recording is not possible using the new offscreen API in Manifest V3, as discussed in [this Stack Overflow post](https://stackoverflow.com/questions/74773408/chrome-tabcapture-unavailable-in-mv3s-new-offscreen-api).
+- Previous methods of screen recording, such as `chrome.desktopCapture.chooseDesktopMedia()`, no longer work in Manifest V3, as discussed in [this Stack Overflow post](https://stackoverflow.com/questions/30906689/capture-screen-chrome-desktopcapture-choosedesktopmedia-fails-pnacl-extens) and [this GitHub issue](https://github.com/GoogleChrome/chrome-extensions-samples/issues/627).
+- All existing video recording extensions currently use Manifest V2, as noted in the above issues.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone this repository to your local machine
+2. Open the Google Chrome browser and go to `chrome://extensions/`.
+3. Turn on the "Developer mode" toggle in the top right corner.
+4. Click on the "Load unpacked" button and select the directory where you cloned this repository.
+5. The extension should now be loaded and ready to use.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Usage
 
-### `npm test`
+1. Click on the extension icon in the top right corner of the browser.
+2. Click on the "Start Recording" button to start recording your screen.
+3. It will open a new extension tab that is pinned and without a title. Select any screen.
+4. Click on the "Stop Recording" button to stop the recording.
+5. The recorded video will be displayed on screen (you can do anything you want in `content.js` file).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 👥 Author
 
-### `npm run build`
+👤 **Charlian Imoisili**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- GitHub: [@CharlyAnne](https://github.com/CharlyAnne)
+- Twitter: [@Imoisiliii](https://twitter.com/Imoisiliii)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/charlian-imoisili)
