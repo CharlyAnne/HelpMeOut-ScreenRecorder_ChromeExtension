@@ -1,4 +1,4 @@
-# HelpMeOut - Google Chrome Video Recorder Extension
+# HelpMeOut -Video Recorder Chrome  Extension
 
 This repository provides a minimal example of how to create a Chrome extension that records the user's screen and webcam, allowing navigation or URL changes on the current tab.
 
