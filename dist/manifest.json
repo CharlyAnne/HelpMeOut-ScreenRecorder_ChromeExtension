@@ -1,7 +1,7 @@
 {
   "name": "Help Me Out",
   "version": "1.0.0",
-  "description": "Screen Recorder",
+  "description": "Screen Recorder: Records Users' screen and webcam",
   "manifest_version": 3,
   "author": "CharlyAnne",
   "icons": {
@@ -14,6 +14,7 @@
     "12": "/close-circle.png"
   },
   "action": {
+    "default_title": "Help Me Out",
     "default_popup": "./popup.html",
     "default_icon": {
       "16": "/logo.png"
@@ -35,6 +36,7 @@
     "tabs",
     "activeTab",
     "scripting",
-    "desktopCapture"
+    "desktopCapture",
+    "storage"
   ]
 }

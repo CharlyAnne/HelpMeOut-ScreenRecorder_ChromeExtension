@@ -1,6 +1,5 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import {
   AiOutlineCloseCircle,
   AiOutlineSetting,
@@ -30,8 +29,8 @@ const RecordModal = () => {
         <div className="flex justify-between">
           <div className="flex items-center">
             <Link href="/" className="">
-              <Image
-                src="/assets/images/logo.png"
+              <img
+                src="/assets/logo.png"
                 alt="Logo"
                 width={160}
                 height={70}

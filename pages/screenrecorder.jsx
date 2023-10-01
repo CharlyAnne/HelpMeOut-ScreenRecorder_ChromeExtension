@@ -1,12 +1,17 @@
 import React from 'react';
-import ExtensionModal from '../components/Extensions/ExtensionModal';
-import RecordModal from '../components/Recorder/RecordModal';
+import Controls from '../components/Popup/Controls';
+import MediaRecorder from '../components/Popup/MediaRecorder';
 
 const ScreenRecoder = () => {
   return (
-    <main className="flex gap-4">
-      <ExtensionModal />
-      <RecordModal />
+    <main
+      className="flex gap-4 "
+      style={{
+        width: '1500px',
+      }}
+    >
+      <MediaRecorder />
+      <Controls />
     </main>
   );
 };

@@ -38,6 +38,9 @@ h2 {
 .space-around {
   margin-right: 0.5rem;
 }
+#closeButton {
+  cursor: pointer;
+}
 .subtitle {
   width: 90%;
 }
@@ -120,8 +123,8 @@ h2 {
   cursor: pointer;
   background-color: #928fab;
   border-radius: 15px;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
 }
 .slider:before {
   position: absolute;
@@ -131,8 +134,8 @@ h2 {
   left: 0px;
   bottom: 2px;
   background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  -webkit-transition: 0.9s;
+  transition: 0.9s;
   border-radius: 50%;
 }
 input:checked + .slider {
@@ -143,7 +146,7 @@ input:checked + .slider:before {
   -ms-transform: translateX(1.2rem);
   transform: translateX(1.2rem);
 }
-.record {
+.record-btn {
   padding: 10px;
   border: none;
   border-radius: 10px;
@@ -153,6 +156,22 @@ input:checked + .slider:before {
   font-size: 1rem;
   cursor: pointer;
 }
-.record:hover {
+.record-btn:hover {
   box-shadow: 1px 0px 10px #777777;
+}
+.sel_screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.sel_screen .mon p {
+  margin: 0;
+}
+.mon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
 }
