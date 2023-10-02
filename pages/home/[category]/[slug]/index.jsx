@@ -29,37 +29,37 @@ const videoTranscript = [
     id: 1,
     time: '0:00',
     transcript:
-      'First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the.',
+      'First step. Open your bible early in the morning, read a verse and pray. After that, open Instagram on your desktop or mobile device and locate "Live" in the menu at the top of the screen.',
   },
   {
     id: 2,
     time: '0:30',
     transcript:
-      'First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the . Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-ha',
+      'Second step.  Open your bible early in the morning, read a verse and pray. After that, open Instagram on your desktop or mobile device and locate "Live" in the menu at the top of the screen',
   },
   {
     id: 3,
     time: '1:00',
     transcript:
-      'First step. Open Facebook on your desktop or mobile device and locate Marketplace in the left-hand menu or at the top of the . Open Facebook on your desktop or mobile device and locate Marketplace in the left-ha',
+      ' Open your bible early in the morning, read a verse and pray. After that, open Instagram on your desktop or mobile device and locate "Live" in the menu at the top of the screen',
   },
   {
     id: 4,
     time: '1:30',
     transcript:
-      'First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the.',
+      'Open your bible early in the morning, read a verse and pray. After that, open Instagram on your desktop or mobile device and locate "Live" in the menu at the top of the screend locate "Marketplace" in the left-hand menu or at the top of the.',
   },
   {
     id: 5,
     time: '2:00',
     transcript:
-      'First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the . Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-ha',
+      'Fifth step.  Open your bible early in the morning, read a verse and pray. After that, open Instagram on your desktop or mobile device and locate "Live" in the menu at the top of the screen',
   },
   {
     id: 6,
     time: '2:35',
     transcript:
-      'First step. Open Facebook on your desktop or mobile device and locate Marketplace in the left-hand menu or at the top of the . Open Facebook on your desktop or mobile device and locate Marketplace in the left-ha',
+      'Open your bible early in the morning, read a verse and pray. After that, open Instagram on your desktop or mobile device and locate "Live" in the menu at the top of the screen',
   },
 ];
 const Index = () => {
@@ -90,7 +90,7 @@ const Index = () => {
         </h1>
         <section className="mt-8 shadow-md p-4 rounded-xl">
           <video controls className="w-full h-auto my-4 rounded-xl">
-            <source src="https://example.com/video1.mp4" type="video/mp4" />
+            <source src="https://www.youtube.com/watch?v=XQxPnrOqffU" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </section>
