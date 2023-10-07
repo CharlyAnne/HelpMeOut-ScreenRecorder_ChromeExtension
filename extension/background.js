@@ -1,9 +1,8 @@
-/* eslint-disable no-undef */
 // background.js
 chrome.action.onClicked.addListener(function (tab) {
   try {
     const { host } = new URL(tab.url);
-    if (host === 'extension') return;
+    if (host === "extension") return;
 
     chrome.tabCapture.getMediaStreamId(
       {
@@ -11,22 +10,22 @@ chrome.action.onClicked.addListener(function (tab) {
       },
       (streamId) => {
         chrome.tabs.sendMessage(tab.id, {
-          msg: 'open_recorder',
+          msg: "open_recorder",
           tab,
           streamId,
         });
       }
     );
-    console.log('MESSAGE SENT');
+    console.log("MESSAGE SENT");
   } catch (e) {
-    console.log('ERROR PARSING TAB URL');
+    console.log("ERROR PARSING TAB URL");
   }
 });
 
 // run this script in background
 chrome.tabs.onActivated.addListener(function (activeInfo) {
   chrome.tabs.get(activeInfo.tabId, function (tab) {
-    if (tab.url?.startsWith('chrome://')) return undefined;
+    if (tab.url?.startsWith("chrome://")) return undefined;
 
     // execute content script
     executeScript(activeInfo?.tabId);
@@ -37,6 +36,6 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 function executeScript(tabId) {
   chrome.scripting.executeScript({
     target: { tabId: tabId },
-    files: ['content.js'],
+    files: ["content.js"],
   });
 }

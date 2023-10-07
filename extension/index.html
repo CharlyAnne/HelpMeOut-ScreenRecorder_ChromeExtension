@@ -1,10 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HelpMeOut - Video Screen Recorder</title>
-    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css" />
+    <!-- <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    /> -->
   </head>
   <body>
     <div class="help-me-container show">
@@ -16,7 +22,7 @@
         <div class="heading hmo-d-flex py-4 px-4">
           <div class="top">
             <img
-              src="/assets/images/logo-2.png"
+              src="chrome-extension://__MSG_@@extension_id__/assets/images/logos/logo-2.png"
               width="100"
               alt=""
               id="help-me-image-extension-logo"
@@ -324,76 +330,3 @@
     ></script>
   </body>
 </html>
-<!-- <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Help Me Out</title>
-    <link href="./style.css" type="text/css" rel="stylesheet" />
-    <script defer="defer" src="popup.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="navv flex">
-        <div class="logo flex">
-          <img src="./logo.png" class="logo-img space-around" alt="logo" />
-          <h2 class="logotext">HelpMeOut</h2>
-        </div>
-        <div class="settings img-1 flex config">
-          <img src="/setting-2.png" class="space-around" alt="settings" />
-          <img src="./close-circle.png" id="closeButton" alt="close" />
-        </div>
-      </div>
-      <div class="subtitle">
-        <p class="text">
-          This extension helps you record and share help videos with ease.
-        </p>
-      </div>
-      <div class="icons">
-        <div class="icon-flex img-2">
-          <img src="./monitor.png" alt="full screen" />
-          <img src="./copy.png" alt="current tab" />
-        </div>
-        <div class="icon-flex">
-          <p class="caption light">Full screen</p>
-          <p class="caption bold">Current tab</p>
-        </div>
-      </div> 
-      <div class="sel_screen">
-        <div class="mon">
-          <img src="./monitor.png" alt="" />
-          <p class="caption light">Full screen</p>
-        </div>
-        <div class="mon">
-          <img src="./copy.png" alt="" />
-          <p class="caption bold">Current Tab</p>
-        </div>
-      </div>
-      <div class="camera-audio">
-        <div class="camera">
-          <div class="flex">
-            <img src="./video.png" class="cam img-3" alt="camera" />
-            <p class="cam-text">Camera</p>
-          </div>
-
-          <label class="switch">
-            <input type="checkbox" id="cameraToggle" />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div class="camera">
-          <div class="flex">
-            <img src="./microphone.png" class="cam img-3" alt="mic" />
-            <p class="cam-text">Audio</p>
-          </div>
-
-          <label class="switch">
-            <input type="checkbox" id="micToggle" />
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
-      <button id="startRecording" class="record-btn">Start Recoding</button>
-    </div>
-  </body>
-</html> -->

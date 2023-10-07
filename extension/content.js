@@ -1,15 +1,15 @@
-/* eslint-disable no-undef */
 chrome.runtime.onMessage.addListener(function (msg, sender) {
-  if (msg?.msg == 'open_recorder') {
-    console.log('MESSAGE RECEIVED');
-    localStorage.setItem('@hmo_tabId', msg?.tab?.id);
-    localStorage.setItem('@hmo_tab_streamId', msg?.streamId);
+  if (msg?.msg == "open_recorder") {
+    console.log("MESSAGE RECEIVED");
+    localStorage.setItem("@hmo_tabId", msg?.tab?.id);
+    localStorage.setItem("@hmo_tab_streamId", msg?.streamId);
     toggleScreenRecord();
   }
 });
 
-// var is been used rather than let, bcos once the script get
-// excuted on tab change redeclaration of variables error occurs.
+// var is been used rather than let, bcos
+// once the script get excuted on tab change
+// redeclaration of variables error occurs.
 
 var $ = (elm) => document.querySelector(elm);
 var $all = (elm) => document.querySelectorAll(elm);
@@ -17,8 +17,8 @@ var sleep = (time = 1) => new Promise((res) => setTimeout(res, time * 1000));
 
 // random id generator
 var randomId = (len = 10) => {
-  let char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghij012345678'.split('');
-  let id = '';
+  let char = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghij012345678".split("");
+  let id = "";
   for (let i = 0; i < len; i++) {
     const rand = Math.floor(Math.random() * char.length);
     id += char[rand];
@@ -26,64 +26,65 @@ var randomId = (len = 10) => {
   return id;
 };
 
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener("DOMContentLoaded", async () => {
   insertIframe();
 
   // wait 2sec before continuing
   await sleep(1);
 
   // draggable
-  Draggable($('.help-me-bubble-control'), $('.help-me-container'));
+  Draggable($(".help-me-bubble-control"), $(".help-me-container"));
 
   // backend api / client url
-  var CLIENT_URL = 'http://localhost:3000';
-  // var CLIENT_URL = 'https://charly_helpmeout.vercel.app';
+  // var CLIENT_URL = "http://localhost:3000";
+  var CLIENT_URL = "https://helpmeoutapp.vercel.app";
   var API_BASE_URL = `https://seashell-app-4jicj.ondigitalocean.app/api`;
+  // var API_BASE_URL = `http://localhost:8080/api`;
 
   // recording components
-  var HMOContainer = $('.help-me-iframe-container');
-  var HMORecorderComp = $('.help-me-record-comp');
-  var HMORecorderBubbComp = $('.help-me-bubble-control');
-  var HMOCloseBtn = $('.help-me-close-btn');
-  var HMOCameraSwitch = $('.help-me-camera-switch');
-  var HMOAudioSwitch = $('.help-me-audio-switch');
-  var HMOStartRecordingBtn = $('.help-me-start-record-btn');
-  var HMOScreenSelection = $all('.hmo-screen-selection-btn');
+  var HMOContainer = $(".help-me-iframe-container");
+  var HMORecorderComp = $(".help-me-record-comp");
+  var HMORecorderBubbComp = $(".help-me-bubble-control");
+  var HMOCloseBtn = $(".help-me-close-btn");
+  var HMOCameraSwitch = $(".help-me-camera-switch");
+  var HMOAudioSwitch = $(".help-me-audio-switch");
+  var HMOStartRecordingBtn = $(".help-me-start-record-btn");
+  var HMOScreenSelection = $all(".hmo-screen-selection-btn");
 
   // preview video element
-  var HMOPreviewVideoContainer = $('.hmo-preview-video');
-  var HMOPreviewVideo = $('.hmo-preview-video-tag');
-  var HMOSaveVideo = $('.hmo-save-video');
-  var HMOCancelVideo = $('.hmo-cancel-video');
+  var HMOPreviewVideoContainer = $(".hmo-preview-video");
+  var HMOPreviewVideo = $(".hmo-preview-video-tag");
+  var HMOSaveVideo = $(".hmo-save-video");
+  var HMOCancelVideo = $(".hmo-cancel-video");
 
   // bubble controls
-  var HMOBubbUserImg = $('.hmo-avatar-img');
-  var HMOBubbUserVideo = $('.hmo-user-video');
-  var HMOBubbCounter = $('.hmo-bubble-counter-txt');
-  var HMOBubbCounterAnim = $('.hmo-animate-pulse');
+  var HMOBubbUserImg = $(".hmo-avatar-img");
+  var HMOBubbUserVideo = $(".hmo-user-video");
+  var HMOBubbCounter = $(".hmo-bubble-counter-txt");
+  var HMOBubbCounterAnim = $(".hmo-animate-pulse");
 
   // media controls
-  var HMOBubbMediaControls = $all('.bubble-media-control');
+  var HMOBubbMediaControls = $all(".bubble-media-control");
   var stopBtn = Array.from(HMOBubbMediaControls).filter((btn) => {
-    return btn.name === 'stop';
+    return btn.name === "stop";
   })[0];
   var pauseBtn = Array.from(HMOBubbMediaControls).filter((btn) => {
-    return btn.name === 'pause';
+    return btn.name === "pause";
   })[0];
   var playBtn = Array.from(HMOBubbMediaControls).filter((btn) => {
-    return btn.name === 'play';
+    return btn.name === "play";
   })[0];
   var audioBtn = Array.from(HMOBubbMediaControls).filter((btn) => {
-    return btn.name === 'audio';
+    return btn.name === "audio";
   })[0];
   var cameraBtn = Array.from(HMOBubbMediaControls).filter((btn) => {
-    return btn.name === 'camera';
+    return btn.name === "camera";
   })[0];
 
   // GLOBAL VARIABLES
   var cameraState =
-    JSON.parse(localStorage.getItem('@hmo_use_camera')) ?? false;
-  var audioState = JSON.parse(localStorage.getItem('@hmo_use_audio')) ?? false;
+    JSON.parse(localStorage.getItem("@hmo_use_camera")) ?? false;
+  var audioState = JSON.parse(localStorage.getItem("@hmo_use_audio")) ?? false;
   var startedRecording = false;
 
   // Countdown Timer
@@ -98,14 +99,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   // recorder data
   var recordedChunks = [];
-  var mime = MediaRecorder.isTypeSupported('video/webm; codecs=vp9')
-    ? 'video/webm; codecs=vp9'
-    : 'video/webm';
+  var mime = MediaRecorder.isTypeSupported("video/webm; codecs=vp9")
+    ? "video/webm; codecs=vp9"
+    : "video/webm";
   var mediaRecorder = null;
   var stream;
   var hmo_streamVideoId = randomId();
   var streamRequestEnded = false;
-  var defaultScreen = 'current_tab';
+  var defaultScreen = "current_tab";
 
   // bubble counter
   timerInterval = setInterval(() => {
@@ -129,25 +130,25 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   // media icons
   var playIcon = `
-  <svg width="128" height="128" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" class="icon">
+<svg width="128" height="128" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" class="icon">
     <path fill="" d="M240 128a15.74 15.74 0 0 1-7.6 13.51L88.32 229.65a16 16 0 0 1-16.2.3A15.86 15.86 0 0 1 64 216.13V39.87a15.86 15.86 0 0 1 8.12-13.82a16 16 0 0 1 16.2.3l144.08 88.14A15.74 15.74 0 0 1 240 128Z"/>
-  </svg>
-  `;
+</svg>
+`;
   var cameraOffIcon = `
-  <svg width="512" height="512" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon">
+<svg width="512" height="512" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon">
     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
         <path d="m3 3l18 18m-6-10v-1l4.553-2.276A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-.675.946"/>
         <path d="M10 6h3a2 2 0 0 1 2 2v3m0 4v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h1"/>
     </g>
-  </svg>
-  `;
+</svg>
+`;
   var audioOffIcon = `
-  <svg width="128" height="128" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon">
+<svg width="128" height="128" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon">
     <path fill="" d="M10.8 4.9c0-.66.54-1.2 1.2-1.2s1.2.54 1.2 1.2l-.01 3.91L15 10.6V5c0-1.66-1.34-3-3-3c-1.54 0-2.79 1.16-2.96 2.65l1.76 1.76V4.9zM19 11h-1.7c0 .58-.1 1.13-.27 1.64l1.27 1.27c.44-.88.7-1.87.7-2.91zM4.41 2.86L3 4.27l6 6V11c0 1.66 1.34 3 3 3c.23 0 .44-.03.65-.08l1.66 1.66c-.71.33-1.5.52-2.31.52c-2.76 0-5.3-2.1-5.3-5.1H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28a7.13 7.13 0 0 0 2.55-.9l4.2 4.2l1.41-1.41L4.41 2.86z"/>
-  </svg>
-  `;
+</svg>
+`;
   var audioOnIcon = `
-  <svg
+<svg
     width="128"
     height="128"
     viewBox="0 0 512 512"
@@ -171,7 +172,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         d="M256 64a63.68 63.68 0 0 0-64 64v111c0 35.2 29 65 64 65s64-29 64-65V128c0-36-28-64-64-64Z"
     />
     </svg>
-  `;
+`;
   var cameraOnIcon = `
   <svg
     width="128"
@@ -185,31 +186,31 @@ window.addEventListener('DOMContentLoaded', async () => {
         d="M21.53 7.15a1 1 0 0 0-1 0L17 8.89A3 3 0 0 0 14 6H5a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h9a3 3 0 0 0 3-2.89l3.56 1.78A1 1 0 0 0 21 17a1 1 0 0 0 .53-.15A1 1 0 0 0 22 16V8a1 1 0 0 0-.47-.85ZM15 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1Zm5-.62l-3-1.5v-1.76l3-1.5Z"
     />
     </svg>
-  `;
+`;
 
   // handle screen selection
   HMOScreenSelection.forEach((btn) => {
     btn.onclick = (e) => {
-      const dataset = e.target.dataset['name'];
+      const dataset = e.target.dataset["name"];
       defaultScreen = dataset;
 
       HMOScreenSelection.forEach((btn) => {
-        btn.classList.remove('active');
+        btn.classList.remove("active");
       });
 
       // Add 'active' class to the clicked button
-      btn.classList.add('active');
+      btn.classList.add("active");
       defaultScreen = dataset;
     };
   });
 
   // update audio and camera switch input checked state
-  HMOCameraSwitch.toggleAttribute('checked', !!cameraState);
-  HMOAudioSwitch.toggleAttribute('checked', !!audioState);
+  HMOCameraSwitch.toggleAttribute("checked", !!cameraState);
+  HMOAudioSwitch.toggleAttribute("checked", !!audioState);
 
   // prevent displayMedia from getting called in BG.
   setInterval(() => {
-    if (HMOContainer.classList.contains('show')) {
+    if (HMOContainer.classList.contains("show")) {
       if (cameraState) showCam();
       else if (!startedRecording) hideCam();
     } else {
@@ -225,15 +226,15 @@ window.addEventListener('DOMContentLoaded', async () => {
   // audioBtn.setAttribute("disabled", true);
 
   // handle camera and audio toggle states
-  HMOCameraSwitch.addEventListener('change', (e) => {
-    localStorage.setItem('@hmo_use_camera', e.target.checked);
+  HMOCameraSwitch.addEventListener("change", (e) => {
+    localStorage.setItem("@hmo_use_camera", e.target.checked);
     cameraState = e.target.checked;
     cameraBtn.innerHTML = e.target.checked ? cameraOnIcon : cameraOffIcon;
     e.target.checked ? startCam() : hideCam();
     videoOff = e.target.checked;
   });
-  HMOAudioSwitch.addEventListener('change', async (e) => {
-    localStorage.setItem('@hmo_use_audio', e.target.checked);
+  HMOAudioSwitch.addEventListener("change", async (e) => {
+    localStorage.setItem("@hmo_use_audio", e.target.checked);
     audioState = e.target.checked;
     audioBtn.innerHTML = e.target.checked ? audioOnIcon : audioOffIcon;
     audioOff = e.target.checked;
@@ -244,16 +245,16 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   // update stop button if recording hasn't started
   if (!startedRecording) {
-    stopBtn.classList.add('disabled');
-    pauseBtn.classList.add('disabled');
+    stopBtn.classList.add("disabled");
+    pauseBtn.classList.add("disabled");
   } else {
-    stopBtn.classList.remove('disabled');
-    pauseBtn.classList.remove('disabled');
+    stopBtn.classList.remove("disabled");
+    pauseBtn.classList.remove("disabled");
   }
 
   // update pulse animation
-  if (startedRecording) HMOBubbCounterAnim.classList.add('started');
-  else HMOBubbCounterAnim.classList.remove('started');
+  if (startedRecording) HMOBubbCounterAnim.classList.add("started");
+  else HMOBubbCounterAnim.classList.remove("started");
 
   // update audio icon state
   audioState
@@ -266,8 +267,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   // handle closing of HMO Record component
   HMOCloseBtn.onclick = () => {
-    HMOContainer.classList.remove('show');
-    HMOContainer.classList.add('hide');
+    HMOContainer.classList.remove("show");
+    HMOContainer.classList.add("hide");
   };
 
   //   toggle audio and video output
@@ -307,8 +308,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   // counter controls counter
   pauseBtn.onclick = () => {
-    const dataset = pauseBtn.getAttribute('data-name');
-    if (dataset === 'pause') {
+    const dataset = pauseBtn.getAttribute("data-name");
+    if (dataset === "pause") {
       updatePauseBtnUI(true);
       counter.pause();
     } else {
@@ -317,17 +318,17 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 
     // pause and resume recording
-    if (mediaRecorder.state === 'recording') {
+    if (mediaRecorder.state === "recording") {
       mediaRecorder.pause();
-    } else if (mediaRecorder.state === 'paused') {
+    } else if (mediaRecorder.state === "paused") {
       mediaRecorder.resume();
     }
   };
   stopBtn.onclick = async () => {
     counter.stop();
     startedRecording = false;
-    stopBtn.classList.add('disabled');
-    pauseBtn.classList.add('disabled');
+    stopBtn.classList.add("disabled");
+    pauseBtn.classList.add("disabled");
     if (!streamRequestEnded) {
       await endStream(hmo_streamVideoId);
       streamRequestEnded = true;
@@ -344,15 +345,15 @@ window.addEventListener('DOMContentLoaded', async () => {
     const shouldStart = await startRecording();
     if (shouldStart) {
       startedRecording = true;
-      pauseBtn.classList.remove('disabled');
-      stopBtn.classList.remove('disabled');
-      audioBtn.classList.remove('disabled');
-      audioBtn.removeAttribute('disabled');
-      HMOBubbCounterAnim.classList.add('started');
-      HMOStartRecordingBtn.setAttribute('disabled', true);
-      HMOStartRecordingBtn.classList.add('disabled');
-      HMORecorderComp.classList.remove('show');
-      HMORecorderComp.classList.add('hide');
+      pauseBtn.classList.remove("disabled");
+      stopBtn.classList.remove("disabled");
+      audioBtn.classList.remove("disabled");
+      audioBtn.removeAttribute("disabled");
+      HMOBubbCounterAnim.classList.add("started");
+      HMOStartRecordingBtn.setAttribute("disabled", true);
+      HMOStartRecordingBtn.classList.add("disabled");
+      HMORecorderComp.classList.remove("show");
+      HMORecorderComp.classList.add("hide");
     }
   };
 
@@ -361,12 +362,12 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   // cancel video
   HMOCancelVideo.onclick = () => {
-    HMOPreviewVideoContainer.classList.remove('show');
-    HMOPreviewVideoContainer.classList.add('hide');
+    HMOPreviewVideoContainer.classList.remove("show");
+    HMOPreviewVideoContainer.classList.add("hide");
 
     // hide main HMO RECORDING CONTAINER
-    HMOContainer.classList.remove('show');
-    HMOContainer.classList.add('hide');
+    HMOContainer.classList.remove("show");
+    HMOContainer.classList.add("hide");
 
     // hide main frame container
     toggleScreenRecord();
@@ -393,14 +394,14 @@ window.addEventListener('DOMContentLoaded', async () => {
         type: chunk[0]?.type,
       });
       const formData = new FormData();
-      formData.append('blob', videoBlob);
-      formData.append('videoId', hmo_streamVideoId);
+      formData.append("blob", videoBlob);
+      formData.append("videoId", hmo_streamVideoId);
 
       try {
         // Send the FormData in a POST request
         const url = `${API_BASE_URL}/video/stream`;
         const req = await fetch(url, {
-          method: 'POST',
+          method: "POST",
           body: formData,
         });
         const result = await req.json();
@@ -430,11 +431,11 @@ window.addEventListener('DOMContentLoaded', async () => {
   async function resetUIOnRecordStop() {
     counter.stop();
     startedRecording = false;
-    stopBtn.classList.add('disabled');
-    pauseBtn.classList.add('disabled');
+    stopBtn.classList.add("disabled");
+    pauseBtn.classList.add("disabled");
 
-    HMOStartRecordingBtn.classList.remove('disabled');
-    HMOStartRecordingBtn.removeAttribute('disabled');
+    HMOStartRecordingBtn.classList.remove("disabled");
+    HMOStartRecordingBtn.removeAttribute("disabled");
 
     shouldRestart = true;
 
@@ -445,8 +446,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     });
 
     // Hide Main Container
-    HMOContainer.classList.remove('show');
-    HMOContainer.classList.add('hide');
+    HMOContainer.classList.remove("show");
+    HMOContainer.classList.add("hide");
 
     // display preview video
     await sleep(1);
@@ -467,19 +468,19 @@ window.addEventListener('DOMContentLoaded', async () => {
     try {
       let videoInput;
       console.log({ defaultScreen });
-      if (defaultScreen === 'current_tab') {
+      if (defaultScreen === "current_tab") {
         // Capture current tab
-        const streamId = JSON.parse(localStorage.getItem('@hmo_tab_stream_id'));
+        const streamId = JSON.parse(localStorage.getItem("@hmo_tab_stream_id"));
         videoInput = await navigator.mediaDevices.getUserMedia({
           audio: {
             mandatory: {
-              chromeMediaSource: 'tab',
+              chromeMediaSource: "tab",
               chromeMediaSourceId: streamId,
             },
           },
           video: {
             mandatory: {
-              chromeMediaSource: 'tab',
+              chromeMediaSource: "tab",
               chromeMediaSourceId: streamId,
             },
           },
@@ -487,7 +488,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       } else {
         // capture entire screen
         videoInput = await navigator.mediaDevices.getDisplayMedia({
-          video: { mediaSource: 'screen' },
+          video: { mediaSource: "screen" },
           audio: audioState,
         });
       }
@@ -508,7 +509,7 @@ window.addEventListener('DOMContentLoaded', async () => {
           mimeType: mime,
         });
 
-        mediaRecorder.addEventListener('dataavailable', async function (e) {
+        mediaRecorder.addEventListener("dataavailable", async function (e) {
           recordedChunks.push(e.data);
 
           // stream to backend
@@ -516,7 +517,7 @@ window.addEventListener('DOMContentLoaded', async () => {
           await streamChunksToServer(chunk);
         });
 
-        mediaRecorder.addEventListener('stop', async function () {
+        mediaRecorder.addEventListener("stop", async function () {
           let blob = new Blob(recordedChunks, {
             type: recordedChunks[0].type,
           });
@@ -554,7 +555,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   function updatePauseBtnUI(isPaused = true) {
     if (isPaused) {
       pauseBtn.innerHTML = playIcon;
-      pauseBtn.setAttribute('data-name', 'play');
+      pauseBtn.setAttribute("data-name", "play");
     } else {
       pauseBtn.innerHTML = `
             <svg
@@ -570,15 +571,15 @@ window.addEventListener('DOMContentLoaded', async () => {
                     />
                   </svg>
         `;
-      pauseBtn.setAttribute('data-name', 'pause');
+      pauseBtn.setAttribute("data-name", "pause");
     }
   }
 
   // update count down
   function updateCounterCont(hr, min, sec) {
-    HMOBubbCounter.innerHTML = `${hr > 9 ? hr : '0' + hr}:${
-      min > 9 ? min : '0' + min
-    }:${sec > 9 ? sec : '0' + sec}`;
+    HMOBubbCounter.innerHTML = `${hr > 9 ? hr : "0" + hr}:${
+      min > 9 ? min : "0" + min
+    }:${sec > 9 ? sec : "0" + sec}`;
   }
 
   //  counter
@@ -603,11 +604,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   //   hide recorder UI component
   function hideRecorderComp() {
-    HMORecorderBubbComp.classList.remove('show');
-    HMORecorderComp.classList.remove('show');
+    HMORecorderBubbComp.classList.remove("show");
+    HMORecorderComp.classList.remove("show");
 
-    HMORecorderBubbComp.classList.add('hide');
-    HMORecorderComp.classList.add('hide');
+    HMORecorderBubbComp.classList.add("hide");
+    HMORecorderComp.classList.add("hide");
   }
 
   // handle users webcam
@@ -615,7 +616,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (!HMOBubbUserVideo) return;
     let stream = HMOBubbUserVideo.srcObject;
     let tracks = stream?.getTracks();
-    typeof tracks !== 'undefined' && tracks?.forEach((track) => track.stop());
+    typeof tracks !== "undefined" && tracks?.forEach((track) => track.stop());
     HMOBubbUserVideo.srcObject = null;
   }
 
@@ -627,42 +628,42 @@ window.addEventListener('DOMContentLoaded', async () => {
         .then((vidStream) => {
           stream = vidStream;
           HMOBubbUserVideo.srcObject = vidStream;
-          HMOBubbUserVideo.addEventListener('loadedmetadata', () => {
+          HMOBubbUserVideo.addEventListener("loadedmetadata", () => {
             HMOBubbUserVideo.play();
           });
         })
         .catch(function (error) {
           Toast().error(error.message);
-          console.log('Something went wrong!');
+          console.log("Something went wrong!");
         });
     }
   }
 
   function hideCam() {
-    HMOBubbUserVideo.classList.add('hide');
-    HMOBubbUserVideo.classList.remove('show');
+    HMOBubbUserVideo.classList.add("hide");
+    HMOBubbUserVideo.classList.remove("show");
     stopCam();
   }
 
   function showCam() {
-    HMOBubbUserVideo.classList.remove('hide');
-    HMOBubbUserVideo.classList.add('show');
+    HMOBubbUserVideo.classList.remove("hide");
+    HMOBubbUserVideo.classList.add("show");
     HMOBubbUserVideo.muted = true;
   }
 });
 
 function insertIframe() {
-  const mainDiv = document.createElement('div');
-  const url = chrome.runtime.getURL('index.html');
+  const mainDiv = document.createElement("div");
+  const url = chrome.runtime.getURL("index.html");
 
-  mainDiv.setAttribute('class', 'help-me-iframe-container hide');
+  mainDiv.setAttribute("class", "help-me-iframe-container hide");
 
   //   tried using embed and iframe, but they couldn't leave up to my requirements
   fetch(url)
     .then((r) => r.text())
     .then((data) => {
       const updatedData = data.replace(
-        '__MSG_@@extension_id__',
+        "__MSG_@@extension_id__",
         chrome.runtime.id
       );
       mainDiv.innerHTML = updatedData;
@@ -671,13 +672,13 @@ function insertIframe() {
 }
 
 function toggleScreenRecord() {
-  const mainDiv = $('.help-me-iframe-container');
-  if (mainDiv.classList.contains('show')) {
-    mainDiv.classList.remove('show');
+  const mainDiv = $(".help-me-iframe-container");
+  if (mainDiv.classList.contains("show")) {
+    mainDiv.classList.remove("show");
   } else {
-    mainDiv.classList.add('show');
+    mainDiv.classList.add("show");
   }
-  mainDiv.classList.toggle('hide');
+  mainDiv.classList.toggle("hide");
 }
 
 function Draggable(element, dragzone) {
@@ -686,13 +687,13 @@ function Draggable(element, dragzone) {
     pos3 = 0,
     pos4 = 0;
 
-  element.style.cursor = 'grabbing';
+  element.style.cursor = "grabbing";
 
   const dragMouseUp = () => {
     document.onmouseup = null;
     document.onmousemove = null;
 
-    element.classList.remove('drag');
+    element.classList.remove("drag");
   };
 
   const dragMouseMove = (event) => {
@@ -713,7 +714,7 @@ function Draggable(element, dragzone) {
     pos3 = event.clientX;
     pos4 = event.clientY;
 
-    element.classList.add('drag');
+    element.classList.add("drag");
 
     document.onmouseup = dragMouseUp;
     document.onmousemove = dragMouseMove;
@@ -723,28 +724,24 @@ function Draggable(element, dragzone) {
 }
 
 function Toast() {
-  const toastComp = $('.hmo-error-component');
+  const toastComp = $(".hmo-error-component");
   return {
     success: (msg) => {
       toastComp.innerHTML = `<span>${msg}</span>`;
-      toastComp.classList.add('success');
-      toastComp.classList.add('show');
+      toastComp.classList.add("success");
+      toastComp.classList.add("show");
     },
     error: (msg) => {
       toastComp.innerHTML = `<span>${msg}</span>`;
-      toastComp.classList.add('error');
-      toastComp.classList.add('show');
+      toastComp.classList.add("error");
+      toastComp.classList.add("show");
     },
     delete: async () => {
-      toastComp.classList.remove('show');
+      toastComp.classList.remove("show");
       await sleep(1);
-      toastComp.classList.remove('success');
-      toastComp.classList.remove('error');
-      toastComp.innerHTML = '';
+      toastComp.classList.remove("success");
+      toastComp.classList.remove("error");
+      toastComp.innerHTML = "";
     },
   };
 }
-
-// var recorder = null;
-// let chunks = [];
-// const baseURL = 'https://helpmeout-4ejz.onrender.com';
