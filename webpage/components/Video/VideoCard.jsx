@@ -3,12 +3,17 @@ import React from 'react';
 import { FiLink2 } from 'react-icons/fi';
 import { SlOptionsVertical } from 'react-icons/sl';
 
-const VideoCard = ({ video }) => {
+const VideoCard = ({ video, url, id }) => {
   return (
     <div className="bg-white rounded-lg shadow-md p-4">
-      <Link href={`/home/Recent Videos/${video.title}`}>
-        <video controls className="w-full h-auto mb-4 rounded-xl">
-          <source src={video.videoUrl} type="video/mp4" />
+      <Link href={`/home/Recent Videos/${id}`}>
+        <video
+          controls
+          autoPlay
+          muted
+          className="w-full h-auto mb-4 rounded-xl"
+        >
+          <source src={url} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <section className="flex justify-between">
