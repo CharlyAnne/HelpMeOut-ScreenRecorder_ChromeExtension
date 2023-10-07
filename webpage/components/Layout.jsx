@@ -1,15 +1,15 @@
-import React from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import React from "react";
+import Footer from "./Footer";
+import TopBar from "./TopBar";
 
-const Layout = ({ children }) => {
+function Layout({ children, showFooter, showTopBar = true }) {
   return (
-    <main>
-      <Navbar />
+    <div className="w-full transition-all scroll-smooth relative h-auto overflow-y-scroll bg-white-100 hideScrollBar">
+      {showTopBar && <TopBar />}
       {children}
-      <Footer />
-    </main>
+      {showFooter && <Footer />}
+    </div>
   );
-};
+}
 
 export default Layout;

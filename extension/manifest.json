@@ -1,21 +1,17 @@
 {
   "name": "Help Me Out",
   "version": "1.0.0",
-  "description": "Screen Recorder: Records Users' screen and webcam",
+  "description": "Screen and Webcam Video Recorder",
   "manifest_version": 3,
   "author": "CharlyAnne",
   "icons": {
     "128": "./assets/images/icon-128.png"
   },
   "action": {
-    "default_title": "Help Me Out",
-    "default_popup": "./index.html",
-    "default_icon": {
-      "16": "./assets/images/logo.png"
-    }
+    "default_icon": "./assets/images/logo.png"
   },
   "background": {
-    "service_worker": "./background.js"
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
