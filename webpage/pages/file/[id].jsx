@@ -1,17 +1,17 @@
-import { BsFillPlayFill, BsTelegram, BsWhatsapp } from "react-icons/bs";
-import { AiOutlineEdit, AiTwotoneStar } from "react-icons/ai";
-import { IoCopyOutline } from "react-icons/io5";
-import { BiLogoFacebookCircle } from "react-icons/bi";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import usePageLoaded from "../../hooks/usePageLoaded";
-import { Spinner } from "../../components/Loader";
-import moment from "moment";
-import TopBar from "../../components/TopBar";
-import Link from "next/link";
-import Layout from "../../components/Layout";
-import { getVideoById } from "../../http";
-import { twMerge } from "tailwind-merge";
+import { BsFillPlayFill, BsTelegram, BsWhatsapp } from 'react-icons/bs';
+import { AiOutlineEdit, AiTwotoneStar } from 'react-icons/ai';
+import { IoCopyOutline } from 'react-icons/io5';
+import { BiLogoFacebookCircle } from 'react-icons/bi';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import usePageLoaded from '../../hooks/usePageLoaded';
+import { Spinner } from '../../components/Loader';
+import moment from 'moment';
+import TopBar from '../../components/TopBar';
+import Link from 'next/link';
+import Layout from '../../components/Layout';
+import { getVideoById } from '../../http';
+import { twMerge } from 'tailwind-merge';
 
 export default function VideoFile({ response }) {
   const { pageLoaded } = usePageLoaded(0.5);
@@ -23,16 +23,16 @@ export default function VideoFile({ response }) {
           <div className="left flex flex-col items-start justify-start pr-7 ">
             <div
               className={twMerge(
-                "w-full flex flex-col items-start justify-start",
+                'w-full flex flex-col items-start justify-start',
                 response?.error
-                  ? "opacity-[.3] grayscale cursor-not-allowed select-none "
-                  : "opacity-1"
+                  ? 'opacity-[.3] grayscale cursor-not-allowed select-none '
+                  : 'opacity-1'
               )}
             >
               <span className="text-white-400 ppReg text-[10px] ">Name</span>
               <div className="w-full flex items-center gap-7">
                 <h1 className="font-soraB text-[20px] text-blue-100 ">
-                  {response?.error ? "N/A" : response?.data?.id}
+                  {response?.error ? 'N/A' : response?.data?.id}
                 </h1>
                 <button
                   className="p-2 border-none outline-none flex flex-col items-center justify-center"
@@ -64,7 +64,7 @@ export default function VideoFile({ response }) {
                   <input
                     type="text"
                     className="w-full text-white-300 text-[10px] text-white-400 px-2 py-[1.5em] font-ppReg outline-none border-none bg-transparent"
-                    value={response?.error ? "" : response?.data?.videoPath}
+                    value={response?.error ? '' : response?.data?.videoPath}
                   />
                   <button className="px-3 py-2 rounded-md flex items-center justify-center gap-3 font-ppSB bg-white-105 text-blue-100 text-[10px] scale-[.90] border-solid border-[1px] border-blue-200 ">
                     <IoCopyOutline /> Copy
@@ -79,7 +79,7 @@ export default function VideoFile({ response }) {
                 </span>
                 <div className="w-full rounded-[10px] flex items-center justify-start gap-1 ">
                   <button className="px-3 py-2 rounded-md flex items-center justify-center gap-2 font-ppSB bg-white-105 text-blue-100 text-[10px] scale-[.90] border-solid border-[1px] border-blue-100 ">
-                    <BiLogoFacebookCircle className="text-blue-300" size={15} />{" "}
+                    <BiLogoFacebookCircle className="text-blue-300" size={15} />{' '}
                     Facebook
                   </button>
                   <button className="px-3 py-2 rounded-md flex items-center justify-center gap-2 font-ppSB bg-white-105 text-blue-100 text-[10px] scale-[.90] border-solid border-[1px] border-blue-100 ">
@@ -96,16 +96,12 @@ export default function VideoFile({ response }) {
             <div className="w-full h-[350px] bg-dark-300 rounded-md overflow-hidden flex flex-col items-center justify-center shadow-lg ">
               {!pageLoaded && (
                 <video
-                  src={
-                    response?.error
-                      ? "/oops-video.mp4"
-                      : response?.data?.videoPath
-                  }
+                  src={response?.data?.videoPath}
                   className="w-full h-full flex object-cover"
-                  controls={!response?.error}
+                  controls
                   autoPlay
-                  loop={response?.error}
-                  muted={response?.error}
+                  loop
+                  muted
                 ></video>
               )}
               {pageLoaded && <Spinner color="#fff" />}
@@ -129,7 +125,7 @@ export default function VideoFile({ response }) {
               <div className="w-full h-auto mt-3 max-h-[250px] flex flex-col items-start justify-start gap-3 overflow-y-scroll hideScrollBar">
                 {!response?.error ? (
                   response?.data.transcript?.length > 0 ? (
-                    response?.data?.transcript.split("\n").map((data) => (
+                    response?.data?.transcript.split('\n').map((data) => (
                       <p
                         key={data}
                         className="text-white-400 font-ppReg text-[10px]"
@@ -161,7 +157,7 @@ export default function VideoFile({ response }) {
               Save Video
             </button>
             <p className="text-white-400 font-ppReg text-[13px]">
-              Don't have an account?{" "}
+              Don't have an account?{' '}
               <Link href="#" className="text-blue-100">
                 Create account.
               </Link>
@@ -176,15 +172,15 @@ export default function VideoFile({ response }) {
 export async function getServerSideProps({ query }) {
   let response = { error: false, msg: null, data: null };
   try {
-    const resp = await getVideoById(query["id"]);
+    const resp = await getVideoById(query['id']);
     const data = resp?.data ?? resp?.response?.data;
 
-    response["data"] = data?.data;
-    response["error"] = false;
+    response['data'] = data?.data;
+    response['error'] = false;
   } catch (e) {
     const msg = e?.response?.data.message ?? e?.message;
-    response["error"] = true;
-    response["msg"] = msg;
+    response['error'] = true;
+    response['msg'] = msg;
   }
 
   return {
