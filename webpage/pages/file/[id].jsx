@@ -1,13 +1,10 @@
-import { BsFillPlayFill, BsTelegram, BsWhatsapp } from 'react-icons/bs';
-import { AiOutlineEdit, AiTwotoneStar } from 'react-icons/ai';
+import { BsTelegram, BsWhatsapp } from 'react-icons/bs';
+import { AiOutlineEdit } from 'react-icons/ai';
 import { IoCopyOutline } from 'react-icons/io5';
 import { BiLogoFacebookCircle } from 'react-icons/bi';
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import usePageLoaded from '../../hooks/usePageLoaded';
 import { Spinner } from '../../components/Loader';
-import moment from 'moment';
-import TopBar from '../../components/TopBar';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { getVideoById } from '../../http';

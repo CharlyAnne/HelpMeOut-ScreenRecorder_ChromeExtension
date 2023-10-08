@@ -17,7 +17,6 @@ chrome.runtime.onMessage.addListener(function (msg, sender) {
   }
 });
 
-// random id generator
 var randomId = (len = 10) => {
   let char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghij012345678'.split('');
   let id = '';
@@ -654,7 +653,7 @@ function insertIframe() {
 
   mainDiv.setAttribute('class', 'help-me-iframe-container hide');
 
-  //   tried using embed and iframe, but they couldn't leave up to my requirements
+  //   tried using embed and iframe, but they couldn't live up to my requirements
   fetch(url)
     .then((r) => r.text())
     .then((data) => {
