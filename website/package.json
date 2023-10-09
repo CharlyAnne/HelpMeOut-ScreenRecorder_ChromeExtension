@@ -5,47 +5,15 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+
   },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/chrome": "^0.0.246",
-    "chrome_ext_helpmeout": "file:",
     "framer-motion": "^10.16.4",
-    "localforage": "^1.10.0",
-    "match-sorter": "^6.3.1",
     "next": "13.5.3",
-    "node-sass": "^9.0.0",
-    "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.46.2",
-    "react-icons": "^4.11.0",
-    "react-scripts": "^5.0.1",
-    "recordrtc": "^5.6.2",
-    "sort-by": "^1.2.0",
-    "style-loader": "^3.3.3",
-    "use-screen-recorder": "^1.0.2",
-    "web-vitals": "^2.1.4"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "react-icons": "^4.11.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
